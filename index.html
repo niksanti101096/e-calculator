@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <title>Document</title>
+        <style>
+            .main {
+                display: flex;
+                min-height: 100vh;
+                justify-content: center;
+                align-items: center;
+            }
+            .calculatorBody {
+                width: 400px;
+                min-height: auto;
+            }
+            .displayBox {
+                min-height: 8vh;
+            }
+            #inputBox { 
+                font-size: 3rem;
+            }
+            #disabledBox{
+                font-size: 1rem;
+            }
+            .col {
+                min-height: 7vh;
+            }
+            .btn {
+                font-size: 2rem;
+            }
+            .btn-operator {
+                background-color: orange !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <div class="calculatorBody bg-dark-subtle text-center rounded-3 pt-1 py-4">
+                <div class=" d-flex justify-content-between mx-2">
+                    <button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#historyModal" onclick="historyCalculation()"><i class="bi-clock-history"></i></button>
+                    <button class="btn" type="button"><i class="bi-x-lg"></i></button>
+                </div>
+                <div class="mx-4 mb-3 temp">
+                    <div class="displayBox border border-1 border-black rounded-3">
+                        <input class="text-end input-group border-0 bg-light m-0 pb-0 px-2 rounded-top-3" type="text" name="disabledBox" id="disabledBox" value="" disabled>
+                        <input class="text-end input-group border-0 bg-light m-0 pt-0 px-2 rounded-bottom-3 text-black" type="text" name="inputBox" id="inputBox" value="0" disabled>
+                    </div>
+                </div>
+                <div class="row column-gap-1 my-1 mx-4 ">
+                    <button class="col btn btn-secondary" type="button" onclick="remainder()">%</button>
+                    <button class="col btn btn-secondary" type="button" onclick="getClear()">CE</button>
+                    <button class="col btn btn-secondary" type="button" onclick="getClearAll()">C</button>
+                    <button class="col btn btn-secondary" type="button" onclick="deleteEnd()"><i class="bi-backspace"></i></button>
+                </div>
+                <div class="row column-gap-1 my-1 mx-4">
+                    <button class="col btn btn-secondary" type="button" onclick="reciprocal()"><sup>1</sup>/<sub>x</sub></button>
+                    <button class="col btn btn-secondary" type="button" onclick="square()">x&sup2;</button>
+                    <button class="col btn btn-secondary" type="button" onclick="squareRoot()">&sup2;&#8730x</button>
+                    <button class="col btn btn-secondary" type="button" onclick="getStandardOperator('÷')">÷</button>
+                </div>
+                <div class="row column-gap-1 my-1 mx-4">
+                    <button class="col btn btn-light" type="button" onclick="clickNumEvent(7)">7</button>
+                    <button class="col btn btn-light" type="button" onclick="clickNumEvent(8)">8</button>
+                    <button class="col btn btn-light" type="button" onclick="clickNumEvent(9)">9</button>
+                    <button class="col btn btn-secondary" type="button" onclick="getStandardOperator('x')">x</button>
+                </div>
+                <div class="row column-gap-1 my-1 mx-4">
+                    <button class="col btn btn-light" type="button" onclick="clickNumEvent(4)">4</button>
+                    <button class="col btn btn-light" type="button" onclick="clickNumEvent(5)">5</button>
+                    <button class="col btn btn-light" type="button" onclick="clickNumEvent(6)">6</button>
+                    <button class="col btn btn-secondary" type="button" onclick="getStandardOperator('-')">-</button>
+                </div>
+                <div class="row column-gap-1 my-1 mx-4">
+                    <button class="col btn btn-light" type="button" onclick="clickNumEvent(1)">1</button>
+                    <button class="col btn btn-light" type="button" onclick="clickNumEvent(2)">2</button>
+                    <button class="col btn btn-light" type="button" onclick="clickNumEvent(3)">3</button>
+                    <button class="col btn btn-secondary" type="button" onclick="getStandardOperator('+')">+</button>
+                </div>
+                <div class="row column-gap-1 mx-4">
+                    <button class="col btn btn-light" type="button" onclick="negate()"><sup>+</sup>/<sub></sub>-</button>
+                    <button class="col btn btn-light" type="button" onclick="clickNumEvent(0)">0</button>
+                    <button class="col btn btn-light" type="button" onclick="getDot()">.</button>
+                    <button class="col btn btn-primary" type="button" onclick="equal()">=</button>
+                </div>
+            </div>
+
+            <div class="modal fade" id="historyModal" tabindex="-1" data-bs-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5">Calculation History</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="modal-body">
+                        <ul id="modal-list"></ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm" data-bs-dismiss="modal">Clear history</button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
