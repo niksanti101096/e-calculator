@@ -287,7 +287,7 @@ document.addEventListener("keydown", holder => {
     if (holder.key == "Enter") {
         equal();
     }
-    else if (holder.location == 3) {
+    else if (holder.location == 3 || holder.key == "Backspace") {
         let displayBoxLimit = () => document.getElementById("inputBox").value.length;
         let temp = document.getElementById("inputBox").value;
         if (temp == "0") {
