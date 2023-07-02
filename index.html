@@ -29,7 +29,7 @@
             .col {
                 min-height: 7vh;
             }
-            .btn {
+            .btn-calc {
                 font-size: 2rem;
             }
             .btn-operator {
@@ -41,8 +41,8 @@
         <div class="main">
             <div class="calculatorBody bg-dark-subtle text-center rounded-3 pt-1 py-4">
                 <div class=" d-flex justify-content-between mx-2">
-                    <button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#historyModal" onclick="historyCalculation()"><i class="bi-clock-history"></i></button>
-                    <button class="btn" type="button"><i class="bi-x-lg"></i></button>
+                    <button class="btn btn-calc" type="button" data-bs-toggle="modal" data-bs-target="#historyModal"><i class="bi-clock-history"></i></button>
+                    <button class="btn btn-calc" type="button"><i class="bi-x-lg"></i></button>
                 </div>
                 <div class="mx-4 mb-3 temp">
                     <div class="displayBox border border-1 border-black rounded-3">
@@ -51,40 +51,40 @@
                     </div>
                 </div>
                 <div class="row column-gap-1 my-1 mx-4 ">
-                    <button class="col btn btn-secondary" type="button" onclick="remainder()">%</button>
-                    <button class="col btn btn-secondary" type="button" onclick="getClear()">CE</button>
-                    <button class="col btn btn-secondary" type="button" onclick="getClearAll()">C</button>
-                    <button class="col btn btn-secondary" type="button" onclick="deleteEnd()"><i class="bi-backspace"></i></button>
+                    <button class="col btn btn-calc btn-secondary" type="button" onclick="remainder()">%</button>
+                    <button class="col btn btn-calc btn-secondary" type="button" onclick="getClear()">CE</button>
+                    <button class="col btn btn-calc btn-secondary" type="button" onclick="getClearAll()">C</button>
+                    <button class="col btn btn-calc btn-secondary" type="button" onclick="deleteEnd()"><i class="bi-backspace"></i></button>
                 </div>
                 <div class="row column-gap-1 my-1 mx-4">
-                    <button class="col btn btn-secondary" type="button" onclick="reciprocal()"><sup>1</sup>/<sub>x</sub></button>
-                    <button class="col btn btn-secondary" type="button" onclick="square()">x&sup2;</button>
-                    <button class="col btn btn-secondary" type="button" onclick="squareRoot()">&sup2;&#8730x</button>
-                    <button class="col btn btn-secondary" type="button" onclick="getStandardOperator('÷')">÷</button>
+                    <button class="col btn btn-calc btn-secondary" type="button" onclick="reciprocal()"><sup>1</sup>/<sub>x</sub></button>
+                    <button class="col btn btn-calc btn-secondary" type="button" onclick="square()">x&sup2;</button>
+                    <button class="col btn btn-calc btn-secondary" type="button" onclick="squareRoot()">&sup2;&#8730x</button>
+                    <button class="col btn btn-calc btn-secondary" type="button" onclick="getStandardOperator('÷')">÷</button>
                 </div>
                 <div class="row column-gap-1 my-1 mx-4">
-                    <button class="col btn btn-light" type="button" onclick="clickNumEvent(7)">7</button>
-                    <button class="col btn btn-light" type="button" onclick="clickNumEvent(8)">8</button>
-                    <button class="col btn btn-light" type="button" onclick="clickNumEvent(9)">9</button>
-                    <button class="col btn btn-secondary" type="button" onclick="getStandardOperator('x')">x</button>
+                    <button class="col btn btn-calc btn-light" type="button" onclick="clickNumEvent(7)">7</button>
+                    <button class="col btn btn-calc btn-light" type="button" onclick="clickNumEvent(8)">8</button>
+                    <button class="col btn btn-calc btn-light" type="button" onclick="clickNumEvent(9)">9</button>
+                    <button class="col btn btn-calc btn-secondary" type="button" onclick="getStandardOperator('x')">x</button>
                 </div>
                 <div class="row column-gap-1 my-1 mx-4">
-                    <button class="col btn btn-light" type="button" onclick="clickNumEvent(4)">4</button>
-                    <button class="col btn btn-light" type="button" onclick="clickNumEvent(5)">5</button>
-                    <button class="col btn btn-light" type="button" onclick="clickNumEvent(6)">6</button>
-                    <button class="col btn btn-secondary" type="button" onclick="getStandardOperator('-')">-</button>
+                    <button class="col btn btn-calc btn-light" type="button" onclick="clickNumEvent(4)">4</button>
+                    <button class="col btn btn-calc btn-light" type="button" onclick="clickNumEvent(5)">5</button>
+                    <button class="col btn btn-calc btn-light" type="button" onclick="clickNumEvent(6)">6</button>
+                    <button class="col btn btn-calc btn-secondary" type="button" onclick="getStandardOperator('-')">-</button>
                 </div>
                 <div class="row column-gap-1 my-1 mx-4">
-                    <button class="col btn btn-light" type="button" onclick="clickNumEvent(1)">1</button>
-                    <button class="col btn btn-light" type="button" onclick="clickNumEvent(2)">2</button>
-                    <button class="col btn btn-light" type="button" onclick="clickNumEvent(3)">3</button>
-                    <button class="col btn btn-secondary" type="button" onclick="getStandardOperator('+')">+</button>
+                    <button class="col btn btn-calc btn-light" type="button" onclick="clickNumEvent(1)">1</button>
+                    <button class="col btn btn-calc btn-light" type="button" onclick="clickNumEvent(2)">2</button>
+                    <button class="col btn btn-calc btn-light" type="button" onclick="clickNumEvent(3)">3</button>
+                    <button class="col btn btn-calc btn-secondary" type="button" onclick="getStandardOperator('+')">+</button>
                 </div>
                 <div class="row column-gap-1 mx-4">
-                    <button class="col btn btn-light" type="button" onclick="negate()"><sup>+</sup>/<sub></sub>-</button>
-                    <button class="col btn btn-light" type="button" onclick="clickNumEvent(0)">0</button>
-                    <button class="col btn btn-light" type="button" onclick="getDot()">.</button>
-                    <button class="col btn btn-primary" type="button" onclick="equal()">=</button>
+                    <button class="col btn btn-calc btn-light" type="button" onclick="negate()"><sup>+</sup>/<sub></sub>-</button>
+                    <button class="col btn btn-calc btn-light" type="button" onclick="clickNumEvent(0)">0</button>
+                    <button class="col btn btn-calc btn-light" type="button" onclick="getDot()">.</button>
+                    <button class="col btn btn-calc btn-primary" type="button" onclick="equal()">=</button>
                 </div>
             </div>
 
@@ -99,7 +99,7 @@
                         <ul id="modal-list"></ul>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-sm" data-bs-dismiss="modal">Clear history</button>
+                        <button type="button" class="btn btn-danger"  onclick="clearHistory()"><i class="bi-trash-fill"></i> Clear history</button>
                       </div>
                   </div>
                 </div>

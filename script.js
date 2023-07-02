@@ -160,10 +160,8 @@ function equal() {
                 document.getElementById("inputBox").value = total;
                 contOperation = false;
                 clearBoxAfterEquals = true;
-                record.push(document.getElementById("disabledBox").value = `${num1} ${global_operator} ${num2} = ${total}`);
+                document.getElementById("modal-list").innerHTML += `<li> ${num1} ${global_operator} ${num2} = ${total} </li>`;
                 document.getElementById("disabledBox").value = `${num1} ${global_operator} ${num2} =`;
-                console.log(record);
-                
                 break;
             case "-":
                 total = subtraction(num1,num2);
@@ -171,9 +169,8 @@ function equal() {
                 document.getElementById("inputBox").value = total;
                 contOperation = false;
                 clearBoxAfterEquals = true;
-                record.push(document.getElementById("disabledBox").value = `${num1} ${global_operator} ${num2} = ${total}`);
+                document.getElementById("modal-list").innerHTML += `<li> ${num1} ${global_operator} ${num2} = ${total} </li>`;
                 document.getElementById("disabledBox").value = `${num1} ${global_operator} ${num2} =`;
-                console.log(record);
                 break;
             case "x":
                 total = multiplication(num1,num2);
@@ -181,9 +178,8 @@ function equal() {
                 document.getElementById("inputBox").value = total;
                 contOperation = false;
                 clearBoxAfterEquals = true;
-                record.push(document.getElementById("disabledBox").value = `${num1} ${global_operator} ${num2} = ${total}`);
+                document.getElementById("modal-list").innerHTML += `<li> ${num1} ${global_operator} ${num2} = ${total} </li>`;
                 document.getElementById("disabledBox").value = `${num1} ${global_operator} ${num2} =`;
-                console.log(record);
                 break;
             case "÷":
                 total = division(num1,num2);
@@ -191,9 +187,8 @@ function equal() {
                 document.getElementById("inputBox").value = total;
                 contOperation = false;
                 clearBoxAfterEquals = true;
-                record.push(document.getElementById("disabledBox").value = `${num1} ${global_operator} ${num2} = ${total}`);
+                document.getElementById("modal-list").innerHTML += `<li> ${num1} ${global_operator} ${num2} = ${total} </li>`;
                 document.getElementById("disabledBox").value = `${num1} ${global_operator} ${num2} =`;
-                console.log(record);
                 break;
             default:
                 break;
@@ -254,7 +249,7 @@ function reciprocal() {
     inputLimit()
     document.getElementById("inputBox").value = total;
     document.getElementById("disabledBox").value = `1 / (${num1})`;
-    record.push(`1 / (${num1}) = ${total}`)
+    document.getElementById("modal-list").innerHTML += `<li> 1 / (${num1}) = ${total} </li>`;
 }
 
 function square() {
@@ -263,7 +258,7 @@ function square() {
     console.log(total)
     document.getElementById("inputBox").value = total;
     document.getElementById("disabledBox").value = `sqr(${num1})`;
-    record.push(`sqr(${num1}) = ${total}`)
+    document.getElementById("modal-list").innerHTML += `<li> sqr(${num1}) = ${total} </li>`;
 }
 
 function squareRoot() {
@@ -271,7 +266,7 @@ function squareRoot() {
     total = Math.sqrt(num1);
     document.getElementById("inputBox").value = total;
     document.getElementById("disabledBox").value = `√(${num1})`;
-    record.push(`√(${num1}) = ${total}`)
+    document.getElementById("modal-list").innerHTML += `<li> √(${num1}) = ${total} </li>`;
 }
 
 function remainder() {
@@ -279,123 +274,125 @@ function remainder() {
     total = num1 / 100;
     document.getElementById("inputBox").value = total;
     document.getElementById("disabledBox").value = `${num1}%`;
-    record.push(`${num1}% = ${total}`)
+    document.getElementById("modal-list").innerHTML += `<li> ${num1}% = ${total} </li>`;
 }
 
-function historyCalculation() {
-    record.forEach(history => {
-        console.log(history)
-        document.getElementById("modal-list").innerHTML += `<li> ${history} </li>`;
-    });
+function clearHistory() {
+    document.getElementById("modal-list").innerHTML = ``;
 }
 
 // Keyboard
 
 document.addEventListener("keydown", holder => {
-    let displayBoxLimit = () => document.getElementById("inputBox").value.length;
-    let temp = document.getElementById("inputBox").value;
-    if (temp == "0") {
-        document.getElementById("inputBox").value = "";
+    if (holder.key == "Enter") {
+        equal();
     }
-    if (clearBoxAfterEquals == true) {
-        document.getElementById("disabledBox").value = "";
-        clearBoxAfterEquals = false;
-    }
-    if (document.getElementById("inputBox").value == total) {
-        global_operator = "";
-    }
-    if (displayBoxLimit() != inputBoxLimit || displayBoxLimit() == total.toString().length) {
-        if (holder.key == "0") {
-            if (total == document.getElementById("inputBox").value || document.getElementById("inputBox").value == "0") {
+    else if (holder.location == 3) {
+        let displayBoxLimit = () => document.getElementById("inputBox").value.length;
+        let temp = document.getElementById("inputBox").value;
+        if (temp == "0") {
+            document.getElementById("inputBox").value = "";
+        }
+        if (clearBoxAfterEquals == true) {
+            document.getElementById("disabledBox").value = "";
+            clearBoxAfterEquals = false;
+        }
+        if (document.getElementById("inputBox").value == total) {
+            global_operator = "";
+        }
+        if (displayBoxLimit() != inputBoxLimit || displayBoxLimit() == total.toString().length) {
+            if (holder.key == "0") {
+                if (total == document.getElementById("inputBox").value || document.getElementById("inputBox").value == "0") {
+                    document.getElementById("inputBox").value = "0";
+                } else {
+                    document.getElementById("inputBox").value += "0";
+                }
+            }
+            if (holder.key == "1") {
+                if (total == document.getElementById("inputBox").value) {
+                    document.getElementById("inputBox").value = "1";
+                } else {
+                    document.getElementById("inputBox").value += "1";
+                } 
+            }
+            if (holder.key == "2") {
+                if (total == document.getElementById("inputBox").value) {
+                    document.getElementById("inputBox").value = "2";
+                } else {
+                    document.getElementById("inputBox").value += "2";
+                }
+                
+            }
+            if (holder.key == "3") {
+                if (total == document.getElementById("inputBox").value) {
+                    document.getElementById("inputBox").value = "3";
+                } else {
+                    document.getElementById("inputBox").value += "3";
+                }
+            }
+            if (holder.key == "4") {
+                if (total == document.getElementById("inputBox").value) {
+                    document.getElementById("inputBox").value = "4";
+                } else {
+                    document.getElementById("inputBox").value += "4";
+                }
+            }
+            if (holder.key == "5") {
+                if (total == document.getElementById("inputBox").value) {
+                    document.getElementById("inputBox").value = "5";
+                } else {
+                    document.getElementById("inputBox").value += "5";
+                }
+            }
+            if (holder.key == "6") {
+                if (total == document.getElementById("inputBox").value) {
+                    document.getElementById("inputBox").value = "6";
+                } else {
+                    document.getElementById("inputBox").value += "6";
+                }
+            }
+            if (holder.key == "7") {
+                if (total == document.getElementById("inputBox").value) {
+                    document.getElementById("inputBox").value = "7";
+                } else {
+                    document.getElementById("inputBox").value += "7";
+                }
+            }
+            if (holder.key == "8") {
+                if (total == document.getElementById("inputBox").value) {
+                    document.getElementById("inputBox").value = "8";
+                } else {
+                    document.getElementById("inputBox").value += "8";
+                }
+            }
+            if (holder.key == "9") {
+                if (total == document.getElementById("inputBox").value) {
+                    document.getElementById("inputBox").value = "9";
+                } else {
+                    document.getElementById("inputBox").value += "9";
+                }
+            }
+            contOperationEquals = true;
+        }
+        if ((holder.key == "+" && holder.shiftKey) || holder.key == "+") {
+            getStandardOperator("+");
+        }
+        if (holder.key == "-") {
+            getStandardOperator("-");
+        }
+        if (holder.key == "*") {
+            getStandardOperator("x");
+        }
+        if (holder.key == "/") {
+            getStandardOperator("÷");
+        }
+        if (holder.key == "Backspace") {
+            deleteEnd();
+        }
+        if (holder.key == "Escape") {
+            if (document.getElementById("inputBox").value == "") {
                 document.getElementById("inputBox").value = "0";
-            } else {
-                document.getElementById("inputBox").value += "0";
             }
-        }
-        if (holder.key == "1") {
-            if (total == document.getElementById("inputBox").value) {
-                document.getElementById("inputBox").value = "1";
-            } else {
-                document.getElementById("inputBox").value += "1";
-            } 
-        }
-        if (holder.key == "2") {
-            if (total == document.getElementById("inputBox").value) {
-                document.getElementById("inputBox").value = "2";
-            } else {
-                document.getElementById("inputBox").value += "2";
-            }
-            
-        }
-        if (holder.key == "3") {
-            if (total == document.getElementById("inputBox").value) {
-                document.getElementById("inputBox").value = "3";
-            } else {
-                document.getElementById("inputBox").value += "3";
-            }
-        }
-        if (holder.key == "4") {
-            if (total == document.getElementById("inputBox").value) {
-                document.getElementById("inputBox").value = "4";
-            } else {
-                document.getElementById("inputBox").value += "4";
-            }
-        }
-        if (holder.key == "5") {
-            if (total == document.getElementById("inputBox").value) {
-                document.getElementById("inputBox").value = "5";
-            } else {
-                document.getElementById("inputBox").value += "5";
-            }
-        }
-        if (holder.key == "6") {
-            if (total == document.getElementById("inputBox").value) {
-                document.getElementById("inputBox").value = "6";
-            } else {
-                document.getElementById("inputBox").value += "6";
-            }
-        }
-        if (holder.key == "7") {
-            if (total == document.getElementById("inputBox").value) {
-                document.getElementById("inputBox").value = "7";
-            } else {
-                document.getElementById("inputBox").value += "7";
-            }
-        }
-        if (holder.key == "8") {
-            if (total == document.getElementById("inputBox").value) {
-                document.getElementById("inputBox").value = "8";
-            } else {
-                document.getElementById("inputBox").value += "8";
-            }
-        }
-        if (holder.key == "9") {
-            if (total == document.getElementById("inputBox").value) {
-                document.getElementById("inputBox").value = "9";
-            } else {
-                document.getElementById("inputBox").value += "9";
-            }
-        }
-        contOperationEquals = true;
-    }
-    if ((holder.key == "+" && holder.shiftKey) || holder.key == "+") {
-        getStandardOperator("+");
-    }
-    if (holder.key == "-") {
-        getStandardOperator("-");
-    }
-    if (holder.key == "*") {
-        getStandardOperator("x");
-    }
-    if (holder.key == "/") {
-        getStandardOperator("÷");
-    }
-    if (holder.key == "Backspace") {
-        deleteEnd();
-    }
-    if (holder.key == "Escape") {
-        if (document.getElementById("inputBox").value == "") {
-            document.getElementById("inputBox").value = "0";
         }
     }
 });
