@@ -1,0 +1,28 @@
+.main {
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+.calculatorBody {
+    width: 400px;
+    min-height: auto;
+}
+.displayBox {
+    min-height: 8vh;
+}
+#inputBox { 
+    font-size: 3rem;
+}
+#disabledBox{
+    font-size: 1rem;
+}
+.col {
+    min-height: 7vh;
+}
+.btn-calc {
+    font-size: 2rem;
+}
+.btn-operator {
+    background-color: orange !important;
+}
